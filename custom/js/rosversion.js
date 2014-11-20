@@ -46,6 +46,14 @@ $(document).ready(function() {
   if (url_distro) {
     activedistro=url_distro;
   }
+  // Make the alternative syntax VersionName syntax work inside code blocks.
+  $("pre").each(function() {
+    var original = $(this).html();
+    var replaced = original.replace(/%DISTRO%/g,'<span class="rosversion_name">%DISTRO%</span>');
+    if (original != replaced) {
+      $(this).html(replaced);
+    }
+  });
   $("div.version").hide();
   if ($("#"+activedistro).length > 0) {
     $("#"+activedistro).click();
